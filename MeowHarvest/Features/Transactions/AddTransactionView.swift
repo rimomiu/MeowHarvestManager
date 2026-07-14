@@ -16,6 +16,7 @@ struct AddTransactionView: View {
 
     @State private var selectedPhotoItems: [PhotosPickerItem] = []
     @State private var receiptImageData: [Data] = []
+    @State private var isShowingCamera = false
 
     private var categories: [String] {
         transactionType == .expense
@@ -86,8 +87,20 @@ struct AddTransactionView: View {
                         }
                     }
 
+                    Button {
+                        isShowingCamera = true
+                    } label: {
+                        Label(
+                            "拍照",
+                            systemImage: "camera"
+                        )
+                    }
+
                     if !receiptImageData.isEmpty {
-                        ScrollView(.horizontal, showsIndicators: false) {
+                        ScrollView(
+                            .horizontal,
+                            showsIndicators: false
+                        ) {
                             HStack(spacing: 12) {
                                 ForEach(
                                     Array(receiptImageData.enumerated()),
@@ -98,22 +111,32 @@ struct AddTransactionView: View {
                                             Image(uiImage: image)
                                                 .resizable()
                                                 .scaledToFill()
-                                                .frame(width: 110, height: 110)
+                                                .frame(
+                                                    width: 110,
+                                                    height: 110
+                                                )
                                                 .clipShape(
-                                                    RoundedRectangle(cornerRadius: 12)
+                                                    RoundedRectangle(
+                                                        cornerRadius: 12
+                                                    )
                                                 )
                                                 .clipped()
 
                                             Button {
-                                                receiptImageData.remove(at: index)
+                                                receiptImageData.remove(
+                                                    at: index
+                                                )
                                             } label: {
-                                                Image(systemName: "xmark.circle.fill")
-                                                    .font(.title2)
-                                                    .symbolRenderingMode(.palette)
-                                                    .foregroundStyle(
-                                                        .white,
-                                                        .black.opacity(0.7)
-                                                    )
+                                                Image(
+                                                    systemName:
+                                                        "xmark.circle.fill"
+                                                )
+                                                .font(.title2)
+                                                .symbolRenderingMode(.palette)
+                                                .foregroundStyle(
+                                                    .white,
+                                                    .black.opacity(0.7)
+                                                )
                                             }
                                             .padding(5)
                                         }
@@ -123,9 +146,11 @@ struct AddTransactionView: View {
                             .padding(.vertical, 4)
                         }
 
-                        Text("已选择 \(receiptImageData.count) 张图片")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        Text(
+                            "已选择 \(receiptImageData.count) 张图片"
+                        )
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                     }
                 }
 
@@ -138,24 +163,40 @@ struct AddTransactionView: View {
                 }
             }
             .navigationTitle("新增账目")
-            .alert("保存成功", isPresented: $showSavedAlert) {
+            .alert(
+                "保存成功",
+                isPresented: $showSavedAlert
+            ) {
                 Button("好的", role: .cancel) {}
+            }
+            .sheet(
+                isPresented: $isShowingCamera
+            ) {
+                CameraPickerView { imageData in
+                    if let imageData {
+                        receiptImageData.append(imageData)
+                    }
+                }
             }
         }
     }
 
     private var formIsValid: Bool {
-        guard let amount = Double(amountText), amount > 0 else {
+        guard let amount = Double(amountText),
+              amount > 0 else {
             return false
         }
 
         return !vendorOrSource
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .trimmingCharacters(
+                in: .whitespacesAndNewlines
+            )
             .isEmpty
     }
 
     private func saveTransaction() {
-        guard let amount = Double(amountText), amount > 0 else {
+        guard let amount = Double(amountText),
+              amount > 0 else {
             return
         }
 
@@ -169,9 +210,13 @@ struct AddTransactionView: View {
             amount: amount,
             category: category,
             vendorOrSource: vendorOrSource
-                .trimmingCharacters(in: .whitespacesAndNewlines),
+                .trimmingCharacters(
+                    in: .whitespacesAndNewlines
+                ),
             memo: memo
-                .trimmingCharacters(in: .whitespacesAndNewlines),
+                .trimmingCharacters(
+                    in: .whitespacesAndNewlines
+                ),
             receiptImages: receiptImages
         )
 
@@ -182,7 +227,9 @@ struct AddTransactionView: View {
             resetForm()
             showSavedAlert = true
         } catch {
-            print("Save failed: \(error.localizedDescription)")
+            print(
+                "Save failed: \(error.localizedDescription)"
+            )
         }
     }
 
@@ -200,11 +247,15 @@ struct AddTransactionView: View {
     private func loadSelectedPhotos() async {
         for item in selectedPhotoItems {
             do {
-                if let data = try await item.loadTransferable(type: Data.self) {
+                if let data = try await item.loadTransferable(
+                    type: Data.self
+                ) {
                     receiptImageData.append(data)
                 }
             } catch {
-                print("读取图片失败：\(error.localizedDescription)")
+                print(
+                    "读取图片失败：\(error.localizedDescription)"
+                )
             }
         }
 

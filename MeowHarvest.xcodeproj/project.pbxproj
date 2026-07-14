@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		AA3D48843006901B00668081 /* MeowHarvest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MeowHarvest.app; path = "/Users/miaomiao/projects/swift project/MeowHarvest/build/Debug-iphoneos/MeowHarvest.app"; sourceTree = "<absolute>"; };
+		AA4425813006DD2000F643AC /* MeowHarvest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowHarvest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +33,7 @@
 			isa = PBXGroup;
 			children = (
 				AA3D483C3006806C00668081 /* MeowHarvest */,
+				AA4425813006DD2000F643AC /* MeowHarvest.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = MeowHarvest;
-			productReference = AA3D48843006901B00668081 /* MeowHarvest.app */;
+			productReference = AA4425813006DD2000F643AC /* MeowHarvest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -249,6 +250,8 @@
 				DEVELOPMENT_TEAM = 6369SHU5LG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "用于拍摄和保存农场收据或发票。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "用于选择和保存农场收据或发票。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -283,6 +286,8 @@
 				DEVELOPMENT_TEAM = 6369SHU5LG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "用于拍摄和保存农场收据或发票。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "用于选择和保存农场收据或发票。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
