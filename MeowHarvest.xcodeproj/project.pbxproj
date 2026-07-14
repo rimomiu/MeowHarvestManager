@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		AA3D483A3006806C00668081 /* MeowHarvest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowHarvest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA3D48843006901B00668081 /* MeowHarvest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowHarvest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,16 +33,8 @@
 			isa = PBXGroup;
 			children = (
 				AA3D483C3006806C00668081 /* MeowHarvest */,
-				AA3D483B3006806C00668081 /* Products */,
+				AA3D48843006901B00668081 /* MeowHarvest.app */,
 			);
-			sourceTree = "<group>";
-		};
-		AA3D483B3006806C00668081 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AA3D483A3006806C00668081 /* MeowHarvest.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = MeowHarvest;
-			productReference = AA3D483A3006806C00668081 /* MeowHarvest.app */;
+			productReference = AA3D48843006901B00668081 /* MeowHarvest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -82,6 +74,7 @@
 				TargetAttributes = {
 					AA3D48393006806C00668081 = {
 						CreatedOnToolsVersion = 26.6;
+						LastSwiftMigration = 2660;
 					};
 				};
 			};
@@ -95,7 +88,7 @@
 			mainGroup = AA3D48313006806C00668081;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = AA3D483B3006806C00668081 /* Products */;
+			productRefGroup = AA3D48313006806C00668081;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -251,6 +244,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6369SHU5LG;
@@ -272,6 +266,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -283,6 +278,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6369SHU5LG;
