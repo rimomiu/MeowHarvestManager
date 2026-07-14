@@ -1,29 +1,20 @@
-//
-//  RootTabView.swift
-//  MeowHarvest
-//
-//  Created by JIHANYU MIAO on 7/14/26.
-//
-
-import Foundation
-
 import SwiftUI
 
 struct RootTabView: View {
     var body: some View {
         TabView {
-            Text("Dashboard")
+            DashboardView()
                 .tabItem {
                     Label(
-                        "概览",
-                        systemImage: "chart.line.uptrend.xyaxis"
+                        "tab.dashboard",
+                        systemImage: "chart.bar.fill"
                     )
                 }
 
             TransactionListView()
                 .tabItem {
                     Label(
-                        "账目",
+                        "tab.transactions",
                         systemImage: "list.bullet.rectangle"
                     )
                 }
@@ -31,10 +22,11 @@ struct RootTabView: View {
             AddTransactionView()
                 .tabItem {
                     Label(
-                        "记账",
+                        "tab.add_transaction",
                         systemImage: "plus.circle.fill"
                     )
                 }
         }
     }
 }
+
