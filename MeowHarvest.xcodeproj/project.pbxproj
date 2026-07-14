@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		AA3D48843006901B00668081 /* MeowHarvest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowHarvest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA3D48843006901B00668081 /* MeowHarvest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MeowHarvest.app; path = "/Users/miaomiao/projects/swift project/MeowHarvest/build/Debug-iphoneos/MeowHarvest.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				AA3D483C3006806C00668081 /* MeowHarvest */,
-				AA3D48843006901B00668081 /* MeowHarvest.app */,
 			);
 			sourceTree = "<group>";
 		};
