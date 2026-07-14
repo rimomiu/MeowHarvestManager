@@ -1,11 +1,3 @@
-//
-//  TransactionListView.swift
-//  MeowHarvest
-//
-//  Created by JIHANYU MIAO on 7/14/26.
-//
-
-import Foundation
 import SwiftUI
 import SwiftData
 
@@ -22,41 +14,61 @@ struct TransactionListView: View {
         NavigationStack {
             List {
                 ForEach(transactions) { transaction in
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text(transaction.vendorOrSource)
-                                .font(.headline)
+                    NavigationLink {
+                        TransactionDetailView(
+                            transaction: transaction
+                        )
+                    } label: {
+                        VStack(
+                            alignment: .leading,
+                            spacing: 6
+                        ) {
+                            HStack {
+                                Text(transaction.vendorOrSource)
+                                    .font(.headline)
 
-                            Spacer()
+                                Spacer()
+
+                                Text(
+                                    transaction.amount,
+                                    format: .currency(code: "USD")
+                                )
+                                .fontWeight(.semibold)
+                                .foregroundStyle(
+                                    transaction.type == .income
+                                        ? .green
+                                        : .primary
+                                )
+                            }
 
                             Text(
-                                transaction.amount,
-                                format: .currency(code: "USD")
+                                "\(transaction.type.displayName) · \(transaction.category)"
                             )
-                            .fontWeight(.semibold)
-                            .foregroundStyle(
-                                transaction.type == .income
-                                    ? .green
-                                    : .primary
-                            )
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                            HStack {
+                                Text(
+                                    transaction.transactionDate.formatted(
+                                        date: .abbreviated,
+                                        time: .omitted
+                                    )
+                                )
+
+                                if !transaction.receiptImages.isEmpty {
+                                    Spacer()
+
+                                    Label(
+                                        "\(transaction.receiptImages.count) 张图片",
+                                        systemImage: "paperclip"
+                                    )
+                                }
+                            }
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
                         }
-
-                        Text(
-                            "\(transaction.type.rawValue) · \(transaction.category)"
-                        )
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-
-                        Text(
-                            transaction.transactionDate.formatted(
-                                date: .abbreviated,
-                                time: .omitted
-                            )
-                        )
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 4)
                     }
-                    .padding(.vertical, 4)
                 }
                 .onDelete(perform: deleteTransactions)
             }
@@ -66,18 +78,30 @@ struct TransactionListView: View {
                     ContentUnavailableView(
                         "暂无账目",
                         systemImage: "tray",
-                        description: Text("保存收入或支出后会显示在这里。")
+                        description: Text(
+                            "保存收入或支出后会显示在这里。"
+                        )
                     )
                 }
             }
         }
     }
 
-    private func deleteTransactions(at offsets: IndexSet) {
+    private func deleteTransactions(
+        at offsets: IndexSet
+    ) {
         for offset in offsets {
-            modelContext.delete(transactions[offset])
+            modelContext.delete(
+                transactions[offset]
+            )
         }
 
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+        } catch {
+            print(
+                "Delete failed: \(error.localizedDescription)"
+            )
+        }
     }
 }

@@ -27,7 +27,7 @@ final class TransactionRecord {
 
     var type: TransactionType {
         get {
-            TransactionType(rawValue: typeRawValue) ?? .expense
+            TransactionType.fromStoredValue(typeRawValue)
         }
         set {
             typeRawValue = newValue.rawValue

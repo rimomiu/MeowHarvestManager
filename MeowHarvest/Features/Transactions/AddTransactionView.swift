@@ -30,7 +30,7 @@ struct AddTransactionView: View {
                 Section("账目信息") {
                     Picker("类型", selection: $transactionType) {
                         ForEach(TransactionType.allCases) { type in
-                            Text(type.rawValue)
+                            Text(type.displayName)
                                 .tag(type)
                         }
                     }
