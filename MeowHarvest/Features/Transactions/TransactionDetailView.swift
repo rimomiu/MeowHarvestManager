@@ -29,9 +29,11 @@ struct TransactionDetailView: View {
 
                 LabeledContent(
                     "分类",
-                    value: transaction.category
+                    value: CategoryCatalog.localizedName(
+                        for: transaction.category,
+                        type: transaction.type
+                    )
                 )
-
                 LabeledContent(
                     transaction.type == .expense
                         ? "商家 / 收款人"

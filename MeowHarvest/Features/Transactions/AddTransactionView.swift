@@ -50,8 +50,13 @@ struct AddTransactionView: View {
 
                     Picker("分类", selection: $category) {
                         ForEach(categories, id: \.self) { item in
-                            Text(item)
-                                .tag(item)
+                            Text(
+                                CategoryCatalog.localizedName(
+                                    for: item,
+                                    type: transactionType
+                                )
+                            )
+                            .tag(item)
                         }
                     }
 

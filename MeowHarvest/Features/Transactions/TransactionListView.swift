@@ -42,8 +42,14 @@ struct TransactionListView: View {
                             }
 
                             Text(
-                                "\(transaction.type.displayName) · \(transaction.category)"
+                                transaction.type.displayName
+                                    + " · "
+                                    + CategoryCatalog.localizedName(
+                                        for: transaction.category,
+                                        type: transaction.type
+                                    )
                             )
+            
                             .font(.caption)
                             .foregroundStyle(.secondary)
 
