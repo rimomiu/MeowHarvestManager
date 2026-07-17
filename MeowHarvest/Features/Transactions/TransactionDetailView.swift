@@ -94,5 +94,18 @@ struct TransactionDetailView: View {
         }
         .navigationTitle("账目详情")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(
+                placement: .primaryAction
+            ) {
+                NavigationLink {
+                    EditTransactionView(
+                        transaction: transaction
+                    )
+                } label: {
+                    Text("transaction_detail.edit")
+                }
+            }
+        }
     }
 }
