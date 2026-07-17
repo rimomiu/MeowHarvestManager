@@ -286,10 +286,26 @@ struct EditTransactionView: View {
                 in: .whitespacesAndNewlines
             )
 
+        // 找出用户标记为删除的收据
+        let receiptsToDelete = transaction.receiptImages.filter {
+            receiptIDsMarkedForDeletion.contains($0.id)
+        }
+
+        // 从这笔账目的图片关系中移除
+        transaction.receiptImages.removeAll {
+            receiptIDsMarkedForDeletion.contains($0.id)
+        }
+
+        // 从 SwiftData 中删除图片对象
+        for receipt in receiptsToDelete {
+            modelContext.delete(receipt)
+        }
+
         do {
             try modelContext.save()
             dismiss()
         } catch {
+            modelContext.rollback()
             saveErrorMessage = error.localizedDescription
             showSaveError = true
         }
